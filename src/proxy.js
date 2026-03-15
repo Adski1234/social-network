@@ -6,12 +6,12 @@ const isPublicRoute = createRouteMatcher([
   '/sign-up(.*)',
 ]);
 
-export default clerkMiddleware((auth, request) => {
+export default clerkMiddleware(async (auth, request) => {
   if (!isPublicRoute(request)) {
-    auth().protect();
+    await auth.protect();
   }
 });
 
 export const config = {
-  matcher: ['/((?!_next|.*\..*).*)'],
+  matcher: ['/((?!_next|.*\\..*).*)'],
 };
